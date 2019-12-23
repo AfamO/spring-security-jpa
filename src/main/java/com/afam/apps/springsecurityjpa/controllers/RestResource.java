@@ -5,10 +5,14 @@
  */
 package com.afam.apps.springsecurityjpa.controllers;
 
+import com.afam.apps.springsecurityjpa.model.User;
+import com.afam.apps.springsecurityjpa.repository.UserRepository;
 import com.afam.apps.springsecurityjpa.responseDto.UserProfile;
 import java.security.Principal;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,10 +25,26 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RestResource {
     
+    @Autowired
+    UserRepository userRepository;
+    
     @RequestMapping("/api/users")
     //@PreAuthorize("oauth2.hasAnyScope('read')")
     public String profile_Oauth2() {
-        
+        /**
+            User user = new User();
+            user.setActive(Boolean.TRUE);
+            user.setUserName("Afam");
+            user.setPassword(NoOpPasswordEncoder.getInstance().encode("pass"));
+            user.setRoles("USER");
+            userRepository.save(user);
+            user = new User();
+            user.setActive(Boolean.TRUE);
+            user.setUserName("CigaO");
+            user.setPassword(NoOpPasswordEncoder.getInstance().encode("pass"));
+            user.setRoles("ADMIN");
+            userRepository.save(user);
+            */
         
         return "Welcome All!!!";
         
